@@ -383,7 +383,9 @@ cy_rslt_t mtb_async_transfer_init(mtb_async_transfer_context_t* context,
  * @param[in,out] context The context object for this peripheral that was populated by \ref
  *                        mtb_async_transfer_init
  * @param[in,out] dest    Pointer to the buffer to which the data read from the peripheral
- *                        should be stored.
+ *                        should be stored. This buffer must remain valid for the duration
+ *                        of the transfer, and its contents should not be accessed until the
+ *                        read transfer is complete.
  * @param[in]     length  Length, in bytes, of the data that is to be read
  *
  * \note This function modifies the RX FIFO level depending on the number of bytes
@@ -406,6 +408,9 @@ cy_rslt_t mtb_async_transfer_read(mtb_async_transfer_context_t* context, void* d
  * @param[in,out] context The context object for this peripheral that was populated by \ref
  *                        mtb_async_transfer_init
  * @param[in]     source  Pointer to the data that is to be written to the peripheral
+ *                        This buffer must remain valid for the duration of the transfer,
+ *                        and its contents should not be accessed until the write transfer
+ *                        is complete.
  * @param[in]     length  Length, in bytes, of the data that is to be written to the peripheral
  *
  * \note This function modifies the TX FIFO level depending on the number of bytes
